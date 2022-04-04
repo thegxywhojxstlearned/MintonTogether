@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">{% block header %}Games nearest to you{% endblock %}</h1>
+
+<form method="POST">
+  <label for="filter_discipline">Choose your discipline:</label>
+
+  <select name="filter_discipline">
+      <option value="MS">MS</option>
+      <option value="WS">WS</option>
+      <option value="MD">MD</option>
+      <option value="WD">WD</option>
+      <option value="XD">XD</option>
+    </select>
+
+  <button type="submit" class="btn-primary">Filter</button>
+
+</form>
+
+<div id="posts">
+  {% for post in posts %}
+  <div class="card border-dark">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <a href="/posts/{{post.user.username}}">{{post.user.username}}</a>
+      {% if user.id == post.author %}
+      <div class="btn-group">
+        <button
+          type="button"
+          class="btn btn-sm btn-primary dropdown-toggle"
+          data-bs-toggle="dropdown"
+        ></button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/delete-post/{{post.id}}" class="dropdown-item">Delete</a>
+          </li>
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <div class="card-text">Event location: {{post.location}}</div>
+      <div class="card-text">Event date and time: {{post.eventdate}} {{post.eventtime}}</div>
+      <div class="card-text">Playing {{post.badminton_discipline}}</div>
+      <button align="center">Join</button>
+    </div>
+    <div class="card-footer text-muted">Created on {{post.date_created}}</div>
+  </div>
+  <br/ > {% endfor %}
+</div>
+{% block footer %}
+<div align="center">
+  <a href="/create-post"
+    ><button type="button" class="btn btn-primary btn-lg">
+      Start a game
+    </button></a
+  >
+</div>
+{% endblock %} {% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 align="center">Make a Post</h1>
+
+<form method="POST">
+  <textarea name="location" id="location" class="form-control" placeholder="Event location" required></textarea>
+  
+  <label for="eventdate">Event date:</label>
+  <input type="date" id="eventdate" name="eventdate" required>
+
+  <label for="eventtime">Event time:</label>
+  <input type="time" id="eventtime" name="eventtime" required>
+  
+
+  <label for="badminton_discipline">Choose your discipline:</label>
+
+  <select name="badminton_discipline" required>
+    <option value="MS">MS</option>
+    <option value="WS">WS</option>
+    <option value="MD">MD</option>
+    <option value="WD">WD</option>
+    <option value="XD">XD</option>
+  </select>
+
+  <div align="center">
+
+    <button type="submit" class="btn btn-lg btn-primary">Post</button>
+  </div>
+</form>
+<br />
+<div align="center">
+  <a href="/home"
+    ><button type="button" class="btn btn-lg btn-secondary">Back</button></a
+  >
+</div>
+{% endblock %}
